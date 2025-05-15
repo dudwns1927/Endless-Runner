@@ -5,6 +5,12 @@ using UnityEngine;
 public class InteractZone : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other) {
+        
+        Collidable collidable = other.GetComponent<Collidable>();
+
+        if (collidable != null) {
+            collidable.Activate();
+        }
         Debug.Log(other.gameObject.name);
     }
     
