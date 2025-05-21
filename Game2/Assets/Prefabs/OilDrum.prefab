@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8309018960007782229}
   - component: {fileID: 4727218468497290632}
   - component: {fileID: 4159067310111022266}
+  - component: {fileID: -8031705754999570190}
   m_Layer: 0
   m_Name: OilDrum
   m_TagString: Untagged
@@ -105,3 +106,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.720684, y: 0.7206842, z: 1.2155882}
   m_Center: {x: 0, y: 0, z: 0.60779816}
+--- !u!114 &-8031705754999570190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7859460431713033553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66e0e98d1fabe4f43939ed52829168d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
