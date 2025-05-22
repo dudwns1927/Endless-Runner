@@ -361,10 +361,10 @@ MonoBehaviour:
   random: 0
   createCount: 5
   obstacles: []
-  prefab:
-  - {fileID: 8762814163429222351, guid: a8aac691f607ae54496bfe21c85d50a8, type: 3}
-  - {fileID: 7859460431713033553, guid: c6a602b215e18ff42b4a061b2d62c0c1, type: 3}
-  - {fileID: 7040575369262484478, guid: c546114e71a4a8a43b6ad04ebe3d0a64, type: 3}
+  obstacleNames:
+  - Oil Barrier
+  - OilDrum
+  - TrafficCone
   transforms:
   - {fileID: 2127356992}
   - {fileID: 1714346080}

@@ -6,6 +6,10 @@ public class MouseManager : MonoBehaviour
 {
     [SerializeField] Texture2D texture2D;
 
+
+    private void Awake() {
+        texture2D = Resources.Load<Texture2D>("Defalut");
+    }
     // Start is called before the first frame update
     void Start()
     {

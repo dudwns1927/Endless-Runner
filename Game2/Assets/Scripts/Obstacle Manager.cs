@@ -7,19 +7,28 @@ public class ObstacleManager: MonoBehaviour
     [SerializeField] int random;
     [SerializeField] int createCount = 5;
     [SerializeField] List<GameObject> obstacles;
-    [SerializeField] GameObject [] prefab;
+    [SerializeField] string [] obstacleNames;
     [SerializeField] Transform[] transforms; 
 
     // Start is called before the first frame update
     void Start() {
+        obstacles.Capacity = 10;
+
+        Debug.Log(obstacles.Capacity);
+
         Create();
+
+        Debug.Log(obstacles.Capacity);
 
         StartCoroutine(ActiveObstacle());
     }
 
     public void Create() {
+        
         for (int i = 0; i < createCount; i++) {
-            GameObject clone = Instantiate(prefab[Random.Range(0, prefab.Length)],gameObject.transform); // 부모를 잡는거 gameObject.transform
+            GameObject clone = Instantiate(Resources.Load<GameObject>(obstacleNames[Random.Range(0, obstacleNames.Length)]), transform);
+            
+            clone.name = clone.name.Replace("(Clone)", "");
 
             clone.SetActive(false);
 
@@ -48,7 +57,8 @@ public class ObstacleManager: MonoBehaviour
                 if (ExamineActive()) {
                     // 모든 게임 오브젝트가 활성화 되어 있으면
                     // 리스트를 초기화하고 다시 생성합니다.
-                    GameObject clone = Instantiate(prefab[Random.Range(0, prefab.Length)], gameObject.transform); 
+                    GameObject clone = Instantiate(Resources.Load<GameObject>(obstacleNames[Random.Range(0, obstacleNames.Length)]), transform);
+                    clone.name = clone.name.Replace("(Clone)", "");
                     clone.SetActive(false);
                     obstacles.Add(clone);
                 }
