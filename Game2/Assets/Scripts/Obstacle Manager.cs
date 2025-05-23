@@ -8,7 +8,8 @@ public class ObstacleManager: MonoBehaviour
     [SerializeField] int createCount = 5;
     [SerializeField] List<GameObject> obstacles;
     [SerializeField] string [] obstacleNames;
-    [SerializeField] Transform[] transforms; 
+    [SerializeField] Transform[] transforms;
+    [SerializeField] WaitForSeconds WaitForSeconds = new WaitForSeconds(5);
 
     // Start is called before the first frame update
     void Start() {
@@ -71,7 +72,7 @@ public class ObstacleManager: MonoBehaviour
             obstacles[random].transform.position = transforms[Random.Range(0, transforms.Length)].position;
             obstacles[random].SetActive(true);
 
-            yield return new WaitForSeconds(5);
+            yield return WaitForSeconds;
         }
     }
 }
