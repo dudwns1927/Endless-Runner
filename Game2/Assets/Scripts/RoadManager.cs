@@ -13,7 +13,7 @@ public class RoadManager : MonoBehaviour {
 
     void Update() {
         for(int i = 0; i < roads.Count; i++) {
-                roads[i].transform.Translate(speed * Vector3.back * Time.deltaTime);
+                roads[i].transform.Translate(Vector3.back * SpeedManager.Instance.Speed * Time.deltaTime);
          }
     }
 
