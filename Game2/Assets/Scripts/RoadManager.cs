@@ -9,15 +9,14 @@ public class RoadManager : MonoBehaviour {
     [SerializeField] Collider interactzone;
     [SerializeField] float offset = 40f;
 
+    private void OnEnable() {
+        State.Subscribe(Condition.START, Execute);
 
-
-    void Update() {
-        for(int i = 0; i < roads.Count; i++) {
-                roads[i].transform.Translate(Vector3.back * SpeedManager.Instance.Speed * Time.deltaTime);
-         }
     }
+    private void Execute() {
+        StartCoroutine(Coroutine());
 
-
+    }
 
     /*    void Update() {
             MoveRoads();
@@ -32,6 +31,16 @@ public class RoadManager : MonoBehaviour {
         }
     */
 
+    IEnumerator Coroutine() {
+        while (true) {
+            for(int i = 0; i < roads.Count; i++) {
+                    roads[i].transform.Translate(Vector3.back * SpeedManager.Instance.Speed * Time.deltaTime);
+                
+            }
+            yield return null;
+        }
+    }
+
     public void InitializePosition() {
         GameObject newRoad = roads[0];
 
@@ -42,6 +51,10 @@ public class RoadManager : MonoBehaviour {
 
         roads.Add(newRoad);
 
+
+    }
+    private void OnDisable() {
+        State.UnSubscribe(Condition.START, Execute);
     }
 }
     

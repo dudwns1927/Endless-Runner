@@ -20,30 +20,43 @@ public static class State
     private static Action finish;
     private static Action resume;
 
-    public static void Subscribe(Condition condition, UnityAction unityAction)
+    public static void Subscribe(Condition condition, Action unityAction)
     {
-        UnityEvent unityEvent = new UnityEvent();
-
-        unityEvent.AddListener(unityAction);
-
         switch(condition) {
-            case Condition.START:
+            case Condition.START : Start += unityAction;
                 break;
-            case Condition.FINISH:
+            case Condition.FINISH : finish += unityAction;
                 break;
-            case Condition.RESUME:
+            case Condition.RESUME : resume += unityAction;
                 break;
         }
         
     }
 
 
-    private static void UnSubscribe(Condition condition, UnityAction unityAction) {
-
+    public static void UnSubscribe(Condition condition, Action unityAction) {
+        switch (condition) {
+            case Condition.START:
+                Start -= unityAction;
+                break;
+            case Condition.FINISH:
+                finish -= unityAction;
+                break;
+            case Condition.RESUME:
+                resume -= unityAction;
+                break;
+        }
     }
 
-    private static void Publish(Condition condition) {
-
+    public static void Publish(Condition condition) {
+        switch (condition) {
+            case Condition.START : Start?.Invoke();
+                break;
+            case Condition.FINISH : finish?.Invoke();
+                break;
+            case Condition.RESUME : resume?.Invoke();
+                break;
+        }
     }
 
 }

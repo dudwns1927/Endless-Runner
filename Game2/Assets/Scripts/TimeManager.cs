@@ -1,6 +1,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -63,11 +64,18 @@ public class TimeManager : MonoBehaviour
     [SerializeField] int second;
     [SerializeField] int millisecond;
 
-    private void Awake() {
-        StartCoroutine(Measure());
+
+    private void OnEnable() {
+        State.Subscribe(Condition.START, Execute);
+
     }
 
-    public IEnumerator Measure() {
+    private void Execute() {
+        StartCoroutine(Increase());
+
+    }
+
+    public IEnumerator Increase() {
 
         while (true) { 
         time += Time.deltaTime;
@@ -82,4 +90,9 @@ public class TimeManager : MonoBehaviour
         yield return null;
         }
     }
+    private void OnDisable() {
+        State.UnSubscribe(Condition.START, Execute);
+    }
 }
+
+
