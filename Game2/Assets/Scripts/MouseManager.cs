@@ -11,6 +11,14 @@ public class MouseManager : MonoBehaviour
         texture2D = Resources.Load<Texture2D>("Defalut");
     }
     // Start is called before the first frame update
+
+
+    private void OnEnable() {
+        State.Subscribe(Condition.START, DisableMode);
+        State.Subscribe(Condition.FINISH, EnableMode);
+ 
+    }
+
     void Start()
     {
         Cursor.SetCursor(texture2D, Vector2.zero, CursorMode.ForceSoftware);
@@ -26,6 +34,11 @@ public class MouseManager : MonoBehaviour
     public void EnableMode() {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    private void OnDisable() {
+        State.UnSubscribe(Condition.START, DisableMode);
+        State.UnSubscribe(Condition.FINISH, EnableMode);
     }
 
 }

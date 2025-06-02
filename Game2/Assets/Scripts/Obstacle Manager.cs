@@ -9,20 +9,24 @@ public class ObstacleManager: MonoBehaviour
     [SerializeField] List<GameObject> obstacles;
     [SerializeField] string [] obstacleNames;
     [SerializeField] Transform[] transforms;
-   // [SerializeField] WaitForSeconds WaitForSeconds = new WaitForSeconds(5);
+    // [SerializeField] WaitForSeconds WaitForSeconds = new WaitForSeconds(5);
 
     // Start is called before the first frame update
-    void Start() {
+    void Awake() {
         obstacles.Capacity = 10;
 
         Debug.Log(obstacles.Capacity);
 
         Create();
 
-        Debug.Log(obstacles.Capacity);
 
-        StartCoroutine(ActiveObstacle());
     }
+    private void OnEnable() {
+
+       State.Subscribe(Condition.START, Execute);
+    }
+
+
 
     public void Create() {
         
@@ -46,6 +50,10 @@ public class ObstacleManager: MonoBehaviour
         return true;
     }
 
+    void Execute() {
+
+        StartCoroutine(ActiveObstacle());
+    }
 
     public IEnumerator ActiveObstacle() {
         Vector3 nextSpawnPos = Vector3.zero;
@@ -74,5 +82,9 @@ public class ObstacleManager: MonoBehaviour
 
             yield return CoroutineCache.WaitForSeconds(5.0f);
         }
+    }
+
+    private void OnDisable() {
+        State.UnSubscribe(Condition.START, Execute);
     }
 }
