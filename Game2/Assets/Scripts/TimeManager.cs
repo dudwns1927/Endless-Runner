@@ -67,12 +67,17 @@ public class TimeManager : MonoBehaviour
 
     private void OnEnable() {
         State.Subscribe(Condition.START, Execute);
+        State.Subscribe(Condition.FINISH, Release);
 
     }
 
     private void Execute() {
         StartCoroutine(Increase());
 
+    }
+
+    private void Release() {
+        StopAllCoroutines();
     }
 
     public IEnumerator Increase() {
@@ -92,6 +97,7 @@ public class TimeManager : MonoBehaviour
     }
     private void OnDisable() {
         State.UnSubscribe(Condition.START, Execute);
+        State.UnSubscribe(Condition.FINISH, Release);
     }
 }
 

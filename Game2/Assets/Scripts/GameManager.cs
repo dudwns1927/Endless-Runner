@@ -8,6 +8,11 @@ public class GameManager : MonoBehaviour
 
     public void OnEnable() {
         State.Subscribe(Condition.START, DisableButton);
+        State.Subscribe(Condition.FINISH, Release);
+    }
+
+    private void Release() {
+        StopAllCoroutines();
     }
 
     public void DisableButton() {
@@ -25,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     public void OnDisable() {
         State.UnSubscribe(Condition.START, DisableButton);
+        State.UnSubscribe(Condition.FINISH, Release);
 
     }
 }

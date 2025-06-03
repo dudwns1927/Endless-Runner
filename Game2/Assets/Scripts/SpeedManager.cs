@@ -10,13 +10,25 @@ public class SpeedManager : Singleton<SpeedManager>
 
     [SerializeField] float speed = 30.0f;
     [SerializeField] float limitSpeed = 60.0f;
+    [SerializeField] float initializeSpeed;
 
     public float Speed { get { return speed; } }
 
+    public float InitializeSpeed { get { return initializeSpeed; } }
+
     private void OnEnable() {
+
+        initializeSpeed = speed;
+
         State.Subscribe(Condition.START, Execute);
+        State.Subscribe(Condition.FINISH, Release);
     
     }
+
+    private void Release() {
+        StopAllCoroutines();
+    }
+
 
     private void Execute() {
         StartCoroutine(Increase());
@@ -25,12 +37,13 @@ public class SpeedManager : Singleton<SpeedManager>
 
     IEnumerator Increase() {
         while (speed < limitSpeed) {
-            yield return CoroutineCache.WaitForSeconds(5.0f);
-            speed = speed + 2.5f;
+            yield return CoroutineCache.WaitForSeconds(0.533f);
+            speed = speed + 0.5f;
         }
     }
 
     private void OnDisable() {
         State.UnSubscribe(Condition.START, Execute);
+        State.UnSubscribe(Condition.FINISH, Release);
     }
 }

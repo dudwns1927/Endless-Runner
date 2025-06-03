@@ -417,14 +417,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 490619795}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.06261629, y: 0, z: 0, w: 0.9980377}
+  m_LocalRotation: {x: 0.08863355, y: 0, z: 0, w: 0.99606436}
   m_LocalPosition: {x: 0, y: 2.33, z: -3.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1992884754}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 7.18, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 10.17, y: 0, z: 0}
 --- !u!1 &536164990 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4683698669332398924, guid: d3ac7531ec9cc2d4aa8d485ee30505e4, type: 3}
@@ -762,6 +762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   limitSpeed: 60
+  initializeSpeed: 0
 --- !u!4 &894522516
 Transform:
   m_ObjectHideFlags: 0
@@ -900,7 +901,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.06261629, y: 0, z: 0, w: 0.9980377}
+  m_LocalRotation: {x: 0.08863355, y: 0, z: 0, w: 0.99606436}
   m_LocalPosition: {x: 0, y: 2.33, z: -3.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2103,6 +2104,7 @@ GameObject:
   - component: {fileID: 1992884757}
   - component: {fileID: 1992884756}
   - component: {fileID: 1992884755}
+  - component: {fileID: 1992884758}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -2186,6 +2188,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1992884758
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992884753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 1
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1001 &2065285449
 PrefabInstance:
   m_ObjectHideFlags: 0
